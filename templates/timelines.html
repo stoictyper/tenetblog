@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+        <div class="col-md-6 offset-md-3">
+        <center><h1>TIMELINES</h1></center>
+        <hr>
+        </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-darrk bg-light" >
+  <form class="form-inline m-auto" >
+  {% csrf_token %}
+      <input class="form-control" name="keyword" type="text" placeholder="Search any timeline" aria-label="Search">
+      <button type="submit" class="btn btn-dark">Search</button>
+  </form>
+  <!-- Collapsible content -->
+</nav>
+
+
+{% if timelines %}
+{% for timeline in timelines  %}
+<!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+    <div class="col-md-6 offset-md-3">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <a href="timeline/{{timeline.id}}"><h1 class="mt-4">{{timeline.title}}</h1></a>
+        
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          Sir <i>{{timeline.author}}</i>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{timeline.date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        {% if timeline.aimage %}
+        <img class="img-fluid rounded" src="{{timeline.aimage.url}}" alt="">
+        
+        {% else %}
+        {% endif %}
+
+        <p class="lead">
+        {{timeline.content|safe|truncatewords:10}}
+        </p>
+        <hr>
+        <a href="timeline/{{timeline.id}}" style="float: right;" class="btn btn-danger">Read More</a>
+
+        
+       <br>
+        <br>
+        <br>
+        <br>
+       
+
+
+    
+
+    
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+        
+
+      </div>
+
+    </div>
+
+  </table>
+{% endfor %}
+
+{% else %}
+<div class="alert alert-danger">
+There is no such timeline yet.</div>
+{% endif %}
+
+
+{% endblock body %}

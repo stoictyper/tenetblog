@@ -1,0 +1,53 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color: black;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="https://www.reportdoor.com/wp-content/uploads/2020/08/Tenet-Logo-Gets-Changed-by-Christopher-Nolan-in-Latest-Trailer.jpg" width="205" height="85" alt="">
+          </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'about' %}"><b>ABOUT</b>
+                  <span class="sr-only">(current)</span>
+                </a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="{% url 'timeline:timelines' %}"><b>TIMELINES</b></a>
+          </li>
+          </ul>
+
+
+        <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'timeline:dashboard' %}"><b>CONTROL PANEL</b></a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:logout' %}"><b>LOG OUT</b></a>
+          </li>
+
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:login' %}"><b>LOG IN</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user:signup' %}"><b>SIGN UP</b></a>
+          </li>
+        {% endif %}
+
+
+      
+          
+        </ul>
+        
+
+      </div>
+    </div>
+  </nav>
+  
+  

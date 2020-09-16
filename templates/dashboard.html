@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>Control Panel</h3>
+<hr>
+<p>Welcome home Mr. <b><i><small>{{request.user.username}}</small></i></b></p>
+<a href="/timelines/addtimeline"  class="btn btn-danger">ADD TIMELINE</a>
+<hr>
+{% if timelines %}
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in timelines  %}
+    <tr>
+            <th scope="row">{{i.id}}</th>
+            <td> <a href="/timelines/timeline/{{i.id}}">{{i.title}}</a></td>
+            <td>{{i.author}}</td>
+            <td>{{i.date}}</td>
+            <td><a  href="/timelines/update/{{i.id}}" class="btn btn-danger">Update</a></td>
+            <td><a  href="/timelines/delete/{{i.id}}" class="btn btn-danger">Delete</a></td>
+            
+          </tr>
+    
+    {% endfor %}
+    
+     
+    </tbody>
+  </table>
+
+{% else %}
+<div class="alert alert-danger">You haven't posted any timeline yet</div>
+{% endif %}
+
+
+
+{% endblock body %}
+
+
